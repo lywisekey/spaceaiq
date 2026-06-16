@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpaceQuantum — Bringing Quantum Technologies to Space to Develop the Quantum Internet</title>
+<meta name="description" content="SpaceQuantum brings quantum technologies to space to develop the quantum internet — an orbital constellation delivering post-quantum security today and quantum communication tomorrow. Layer 7 of the Quantum Highway: Root-to-Qubit-to-Space.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#060914;
+  --midnight:#0B1124;
+  --panel:#10172E;
+  --line:rgba(140,160,210,.14);
+  --starlight:#E9ECF6;
+  --slate:#8B94AB;
+  --kapton:#E0A94E;       /* gold MLI foil */
+  --kapton-bright:#F5C97A;
+  --ice:#9FD8EA;
+  --display:'Unbounded',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--starlight);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+::selection{background:var(--kapton);color:var(--void)}
+
+/* ---------- mono eyebrow labels ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--kapton);
+  display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";display:block;width:28px;height:1px;background:var(--kapton);opacity:.6}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(6,9,20,.72);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--display);font-weight:500;font-size:.95rem;letter-spacing:.04em}
+.logo b{color:var(--kapton);font-weight:700}
+.logo small{display:block;font-family:var(--mono);font-weight:400;font-size:.55rem;letter-spacing:.28em;color:var(--slate);margin-top:1px}
+.nav-links{display:flex;gap:34px;font-size:.86rem;color:var(--slate)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--starlight)}
+.nav-cta{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--kapton);color:var(--kapton);
+  padding:9px 18px;border-radius:2px;transition:background .2s,color .2s;
+}
+.nav-cta:hover,.nav-cta:focus-visible{background:var(--kapton);color:var(--void)}
+@media(max-width:840px){.nav-links{display:none}}
+
+/* ---------- hero ---------- */
+header{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;
+}
+#sky{position:absolute;inset:0;z-index:0}
+.hero-content{position:relative;z-index:2;padding-top:120px;padding-bottom:220px}
+.hero-content .eyebrow{margin-bottom:28px}
+h1{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:clamp(2rem,5.2vw,3.9rem);
+  line-height:1.16;
+  letter-spacing:-.01em;
+  max-width:18ch;
+}
+h1 b{font-weight:700;color:var(--kapton-bright)}
+.hero-sub{
+  margin-top:28px;max-width:54ch;color:var(--slate);font-size:1.06rem;
+}
+.hero-actions{margin-top:42px;display:flex;gap:18px;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:15px 30px;border-radius:2px;display:inline-block;transition:all .2s;
+}
+.btn-gold{background:var(--kapton);color:var(--void);border:1px solid var(--kapton)}
+.btn-gold:hover,.btn-gold:focus-visible{background:var(--kapton-bright);border-color:var(--kapton-bright)}
+.btn-ghost{border:1px solid var(--line);color:var(--starlight)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--slate)}
+
+/* earth limb */
+.limb{
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:-72vw;width:160vw;height:160vw;min-width:1400px;min-height:1400px;
+  border-radius:50%;
+  background:radial-gradient(circle at 50% 38%, #1A2C5E 0%, #101B3D 18%, #0A1129 38%, var(--void) 62%);
+  box-shadow:0 -2px 80px rgba(120,170,255,.22), inset 0 6px 60px rgba(159,216,234,.10);
+  z-index:1;
+}
+.limb::before{
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  border-top:1px solid rgba(159,216,234,.45);
+  mask:linear-gradient(to bottom,#000 0 90px,transparent 140px);
+  -webkit-mask:linear-gradient(to bottom,#000 0 90px,transparent 140px);
+}
+
+/* telemetry strip */
+.telemetry{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  border-top:1px solid var(--line);
+  background:rgba(6,9,20,.78);backdrop-filter:blur(10px);
+}
+.telemetry-inner{
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.tcell{
+  padding:18px 26px;border-right:1px solid var(--line);
+  font-family:var(--mono);
+}
+.tcell:last-child{border-right:none}
+.tlabel{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-bottom:5px}
+.tvalue{font-size:1.02rem;color:var(--starlight)}
+.tvalue .unit{color:var(--slate);font-size:.78rem;margin-left:4px}
+.tvalue.gold{color:var(--kapton)}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--kapton);margin-right:8px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media(max-width:840px){
+  .telemetry-inner{grid-template-columns:repeat(2,1fr)}
+  .tcell:nth-child(2){border-right:none}
+  .tcell:nth-child(1),.tcell:nth-child(2){border-bottom:1px solid var(--line)}
+}
+
+/* ---------- sections ---------- */
+section{padding:120px 0;position:relative}
+.section-head{margin-bottom:64px;max-width:720px}
+.section-head h2{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1.5rem,3.2vw,2.3rem);line-height:1.25;margin-top:20px;
+}
+.section-head h2 b{font-weight:700;color:var(--kapton-bright)}
+.section-head p{margin-top:18px;color:var(--slate)}
+
+/* layer band */
+.layer-band{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--midnight);
+}
+.stack{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+@media(max-width:900px){.stack{grid-template-columns:1fr}}
+.stack-list{list-style:none;border-left:1px solid var(--line)}
+.stack-list li{
+  padding:16px 0 16px 26px;position:relative;
+  font-family:var(--mono);font-size:.82rem;color:var(--slate);
+  letter-spacing:.04em;transition:color .2s;
+}
+.stack-list li::before{
+  content:"";position:absolute;left:-4px;top:50%;transform:translateY(-50%);
+  width:7px;height:7px;border-radius:50%;background:var(--line);
+}
+.stack-list li.active{color:var(--starlight)}
+.stack-list li.active::before{background:var(--kapton);box-shadow:0 0 12px rgba(224,169,78,.8)}
+.stack-list li .lnum{color:var(--kapton);margin-right:14px}
+.stack-copy h3{font-family:var(--display);font-weight:500;font-size:1.25rem;margin-bottom:18px}
+.stack-copy p{color:var(--slate);margin-bottom:16px}
+.stack-copy p b{color:var(--starlight);font-weight:600}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:900px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--void);padding:44px 36px;transition:background .25s}
+.pillar:hover{background:var(--panel)}
+.pillar .pnum{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--kapton);margin-bottom:26px}
+.pillar h3{font-family:var(--display);font-weight:500;font-size:1.05rem;line-height:1.4;margin-bottom:16px}
+.pillar p{color:var(--slate);font-size:.95rem}
+
+/* constellation / mission */
+.constellation-art{margin:0 0 64px;border:1px solid var(--line);background:var(--void);border-radius:3px;overflow:hidden}
+.constellation-art svg{display:block;width:100%;height:auto}
+.constellation-art figcaption{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--slate);
+  padding:16px 24px;border-top:1px solid var(--line);background:var(--midnight);
+}
+.constellation-art .links line{stroke-dasharray:6 8;animation:flow 6s linear infinite}
+.constellation-art .sats g{animation:satpulse 3s ease-in-out infinite}
+.constellation-art .sats g:nth-child(2){animation-delay:.6s}
+.constellation-art .sats g:nth-child(3){animation-delay:1.2s}
+.constellation-art .sats g:nth-child(4){animation-delay:1.8s}
+.constellation-art .sats g:nth-child(5){animation-delay:2.4s}
+@keyframes flow{to{stroke-dashoffset:-140}}
+@keyframes satpulse{0%,100%{opacity:1}50%{opacity:.55}}
+.mission-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:64px}
+@media(max-width:900px){.mission-grid{grid-template-columns:repeat(2,1fr)}}
+.mcell{background:var(--midnight);padding:36px 30px}
+.mcell .mval{font-family:var(--display);font-weight:700;font-size:2rem;color:var(--kapton-bright)}
+.mcell .mval span{font-size:1rem;font-weight:300;color:var(--slate)}
+.mcell .mlab{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-top:10px}
+.timeline{border-top:1px solid var(--line)}
+.tl-row{
+  display:grid;grid-template-columns:160px 1fr;gap:32px;
+  padding:30px 0;border-bottom:1px solid var(--line);
+}
+@media(max-width:700px){.tl-row{grid-template-columns:1fr;gap:8px}}
+.tl-date{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;color:var(--kapton)}
+.tl-row h4{font-weight:600;font-size:1rem;margin-bottom:6px}
+.tl-row p{color:var(--slate);font-size:.93rem}
+
+/* markets */
+.markets{display:grid;grid-template-columns:repeat(2,1fr);gap:48px 64px}
+@media(max-width:800px){.markets{grid-template-columns:1fr}}
+.market{display:grid;grid-template-columns:54px 1fr;gap:22px}
+.market .micon{
+  width:54px;height:54px;border:1px solid var(--line);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;color:var(--kapton);
+}
+.market h4{font-weight:600;margin-bottom:8px}
+.market p{color:var(--slate);font-size:.93rem}
+
+/* investor band */
+.invest{
+  background:linear-gradient(180deg,var(--midnight) 0%,var(--void) 100%);
+  border-top:1px solid var(--line);
+  text-align:center;
+}
+.invest .eyebrow{justify-content:center}
+.invest .eyebrow::after{content:"";display:block;width:28px;height:1px;background:var(--kapton);opacity:.6}
+.invest h2{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.3;
+  max-width:22ch;margin:24px auto 0;
+}
+.invest h2 b{font-weight:700;color:var(--kapton-bright)}
+.invest p{max-width:60ch;margin:22px auto 0;color:var(--slate)}
+.invest .hero-actions{justify-content:center}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:56px 0 40px;color:var(--slate);font-size:.85rem}
+.foot-grid{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:flex-start}
+.foot-grid .logo{color:var(--starlight)}
+.foot-links{display:flex;gap:28px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.foot-links a:hover{color:var(--starlight)}
+.foot-note{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);font-size:.78rem;line-height:1.7;max-width:90ch}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .live-dot{animation:none}
+  .constellation-art .links line,.constellation-art .sats g{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">SPACE<b>QUANTUM</b><small>by WISeSat · a WISeKey company</small></a>
+    <div class="nav-links">
+      <a href="#highway">The Quantum Highway</a>
+      <a href="#constellation">Constellation</a>
+      <a href="#markets">Markets</a>
+      <a href="#investors">Investors</a>
+    </div>
+    <a class="nav-cta" href="#investors">Request Briefing</a>
+  </div>
+</nav>
+
+<header id="top">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="limb" aria-hidden="true"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">The Quantum Internet · Root-to-Qubit-to-Space</div>
+    <h1>Bringing quantum technologies to space — to build the <b>quantum internet.</b></h1>
+    <p class="hero-sub">SpaceQuantum is the trusted platform backbone of the future quantum internet: a satellite constellation delivering post-quantum cryptographic keys to any device on Earth today, and evolving in the future toward space-based quantum communications and entangled communication links — a network secured by the laws of physics, beyond the reach of terrestrial vulnerabilities.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#constellation">Explore the Constellation</a>
+      <a class="btn btn-ghost" href="#highway">How It Works</a>
+    </div>
+  </div>
+  <div class="telemetry" role="presentation">
+    <div class="wrap telemetry-inner" style="padding:0">
+      <div class="tcell"><div class="tlabel"><span class="live-dot"></span>Mission Elapsed</div><div class="tvalue" id="met">T+ 00:00:00</div></div>
+      <div class="tcell"><div class="tlabel">Orbit Altitude</div><div class="tvalue">550<span class="unit">km · LEO</span></div></div>
+      <div class="tcell"><div class="tlabel">PQC Keys Delivered</div><div class="tvalue gold" id="keys">—</div></div>
+      <div class="tcell"><div class="tlabel">Root of Trust</div><div class="tvalue">OISTE · <span class="unit">Geneva</span></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ QUANTUM HIGHWAY ============ -->
+<section id="highway" class="layer-band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Architecture</div>
+      <h2>The final layer of the <b>Quantum Highway.</b></h2>
+      <p>Seven layers connect a cryptographic root of trust on the ground to a constellation overhead. SpaceQuantum is where the stack leaves the planet.</p>
+    </div>
+    <div class="stack">
+      <ul class="stack-list reveal" id="stackList">
+        <li><span class="lnum">L1</span>Root of Trust — OISTE Foundation, Geneva</li>
+        <li><span class="lnum">L2</span>Post-Quantum Semiconductors — SEALSQ</li>
+        <li><span class="lnum">L3</span>Digital Identity — Certified PKI</li>
+        <li><span class="lnum">L4</span>Quantum-Safe Networks</li>
+        <li><span class="lnum">L5</span>Sovereign Cloud &amp; Data</li>
+        <li><span class="lnum">L6</span>Machine Economy — Tokenized Transactions</li>
+        <li class="active"><span class="lnum">L7</span>SpaceQuantum — The Orbital Trust Layer</li>
+      </ul>
+      <div class="stack-copy reveal">
+        <h3>Why trust must leave the ground</h3>
+        <p>Terrestrial key distribution depends on infrastructure that can be cut, intercepted, or legislated against. A satellite passing overhead answers to <b>physics and Swiss neutrality</b> — not to any single jurisdiction's network.</p>
+        <p>Each SpaceQuantum satellite carries <b>SEALSQ post-quantum semiconductors</b>, anchored to the OISTE cryptographic Root of Trust, exchanging NIST-standardized post-quantum keys directly with devices on the ground — no cell tower, no fiber, no intermediary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILLARS ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Capabilities</div>
+      <h2>One constellation. <b>Three guarantees.</b></h2>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pnum">QS / 01</div>
+        <h3>Post-Quantum Key Delivery</h3>
+        <p>NIST-standardized post-quantum algorithms, embedded in radiation-tolerant SEALSQ silicon and broadcast from low Earth orbit. Encryption that holds when quantum computers arrive — because it was built for that day.</p>
+      </div>
+      <div class="pillar">
+        <div class="pnum">QS / 02</div>
+        <h3>Direct-to-Satellite IoT</h3>
+        <p>Sensors, vehicles, containers, and grids connect straight to the constellation. Authenticated telemetry from the 85% of the planet that terrestrial networks never reach — oceans, deserts, poles, and conflict zones.</p>
+      </div>
+      <div class="pillar">
+        <div class="pnum">QS / 03</div>
+        <h3>Sovereign by Design</h3>
+        <p>Anchored to a neutral Swiss foundation with UN consultative status. No kill switch, no extraterritorial data seizure, no single point of political failure. Trust as critical infrastructure — owned by no one government.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONSTELLATION ============ -->
+<section id="constellation" class="layer-band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Program</div>
+      <h2>WISeSat 3.0: the constellation, <b>by the numbers.</b></h2>
+      <p>Built on a flight heritage of operational picosatellites launched aboard SpaceX Falcon 9, the next generation scales the orbital trust layer to continuous global coverage.</p>
+    </div>
+
+    <figure class="constellation-art reveal" aria-label="Illustration of a satellite constellation in orbit around Earth, linked by inter-satellite communication paths.">
+      <svg viewBox="0 0 900 620" role="img" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="earthGrad" cx="42%" cy="38%" r="70%">
+            <stop offset="0%" stop-color="#2A4B8C"/>
+            <stop offset="42%" stop-color="#16306A"/>
+            <stop offset="78%" stop-color="#0C1B40"/>
+            <stop offset="100%" stop-color="#070F26"/>
+          </radialGradient>
+          <radialGradient id="atmo" cx="50%" cy="50%" r="50%">
+            <stop offset="74%" stop-color="rgba(159,216,234,0)"/>
+            <stop offset="92%" stop-color="rgba(159,216,234,.35)"/>
+            <stop offset="100%" stop-color="rgba(159,216,234,0)"/>
+          </radialGradient>
+          <radialGradient id="satGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(245,201,122,.9)"/>
+            <stop offset="100%" stop-color="rgba(245,201,122,0)"/>
+          </radialGradient>
+          <linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="rgba(245,201,122,.7)"/>
+            <stop offset="100%" stop-color="rgba(159,216,234,.5)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- starfield -->
+        <g fill="#C9D4F0">
+          <circle cx="70" cy="60" r="1.1" opacity=".7"/><circle cx="180" cy="110" r=".8" opacity=".5"/>
+          <circle cx="820" cy="80" r="1.2" opacity=".8"/><circle cx="760" cy="180" r=".7" opacity=".5"/>
+          <circle cx="40" cy="300" r=".9" opacity=".6"/><circle cx="860" cy="360" r="1" opacity=".7"/>
+          <circle cx="120" cy="520" r=".8" opacity=".5"/><circle cx="800" cy="540" r="1.1" opacity=".7"/>
+          <circle cx="300" cy="40" r=".7" opacity=".5"/><circle cx="560" cy="50" r=".9" opacity=".6"/>
+          <circle cx="660" cy="470" r=".8" opacity=".5"/><circle cx="250" cy="580" r="1" opacity=".6"/>
+        </g>
+
+        <!-- orbital rings (ellipses for perspective) -->
+        <g fill="none" stroke="rgba(159,216,234,.16)" stroke-width="1">
+          <ellipse cx="450" cy="320" rx="330" ry="118"/>
+          <ellipse cx="450" cy="320" rx="300" ry="250" transform="rotate(28 450 320)"/>
+          <ellipse cx="450" cy="320" rx="300" ry="250" transform="rotate(-32 450 320)"/>
+        </g>
+
+        <!-- Earth -->
+        <circle cx="450" cy="320" r="150" fill="url(#atmo)"/>
+        <circle cx="450" cy="320" r="132" fill="url(#earthGrad)"/>
+        <!-- graticule -->
+        <g fill="none" stroke="rgba(159,216,234,.22)" stroke-width="1" clip-path="circle(132px at 450px 320px)">
+          <ellipse cx="450" cy="320" rx="132" ry="44"/>
+          <ellipse cx="450" cy="320" rx="132" ry="90"/>
+          <line x1="318" y1="320" x2="582" y2="320"/>
+          <ellipse cx="450" cy="320" rx="44" ry="132"/>
+          <ellipse cx="450" cy="320" rx="90" ry="132"/>
+          <line x1="450" y1="188" x2="450" y2="452"/>
+        </g>
+        <!-- soft continents -->
+        <g fill="rgba(95,150,210,.30)" clip-path="circle(132px at 450px 320px)">
+          <path d="M392 250 q34 -16 60 4 q24 18 8 42 q-20 26 -52 18 q-30 -10 -30 -34 q0 -22 14 -30 Z"/>
+          <path d="M470 350 q40 -8 56 18 q14 28 -14 46 q-34 18 -56 -6 q-18 -22 -4 -42 q8 -12 18 -16 Z"/>
+          <path d="M360 360 q24 -4 30 16 q4 22 -18 28 q-24 4 -30 -16 q-4 -20 18 -28 Z"/>
+        </g>
+        <!-- terminator shading -->
+        <circle cx="450" cy="320" r="132" fill="rgba(7,15,38,.45)" clip-path="circle(132px at 450px 320px)" transform="translate(48 0)"/>
+
+        <!-- inter-satellite mesh links (the quantum internet) -->
+        <g stroke="url(#linkGrad)" stroke-width="1.4" fill="none" opacity=".85" class="links">
+          <line x1="450" y1="150" x2="688" y2="262"/>
+          <line x1="688" y1="262" x2="612" y2="470"/>
+          <line x1="612" y1="470" x2="300" y2="452"/>
+          <line x1="300" y1="452" x2="206" y2="244"/>
+          <line x1="206" y1="244" x2="450" y2="150"/>
+          <line x1="450" y1="150" x2="612" y2="470"/>
+          <line x1="688" y1="262" x2="300" y2="452"/>
+          <line x1="206" y1="244" x2="612" y2="470"/>
+        </g>
+
+        <!-- satellites -->
+        <g class="sats">
+          <g transform="translate(450 150)"><circle r="16" fill="url(#satGlow)"/><circle r="3.4" fill="#F5C97A"/><rect x="-13" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/><rect x="4" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/></g>
+          <g transform="translate(688 262)"><circle r="16" fill="url(#satGlow)"/><circle r="3.4" fill="#F5C97A"/><rect x="-13" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/><rect x="4" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/></g>
+          <g transform="translate(612 470)"><circle r="16" fill="url(#satGlow)"/><circle r="3.4" fill="#F5C97A"/><rect x="-13" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/><rect x="4" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/></g>
+          <g transform="translate(300 452)"><circle r="16" fill="url(#satGlow)"/><circle r="3.4" fill="#F5C97A"/><rect x="-13" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/><rect x="4" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/></g>
+          <g transform="translate(206 244)"><circle r="16" fill="url(#satGlow)"/><circle r="3.4" fill="#F5C97A"/><rect x="-13" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/><rect x="4" y="-2.2" width="9" height="4.4" rx="1" fill="#9FD8EA"/></g>
+        </g>
+        <!-- ground link to a device -->
+        <g stroke="rgba(245,201,122,.5)" stroke-width="1.2" stroke-dasharray="3 5" class="downlink">
+          <line x1="300" y1="452" x2="430" y2="392"/>
+        </g>
+      </svg>
+      <figcaption>A meshed constellation in low Earth orbit — inter-satellite links forming the trusted backbone of the future quantum internet.</figcaption>
+    </figure>
+
+    <div class="mission-grid reveal">
+      <div class="mcell"><div class="mval">10</div><div class="mlab">Next-Gen Satellites</div></div>
+      <div class="mcell"><div class="mval">2027<span>–28</span></div><div class="mlab">Launch Window</div></div>
+      <div class="mcell"><div class="mval">550<span> km</span></div><div class="mlab">Low Earth Orbit</div></div>
+      <div class="mcell"><div class="mval">F9</div><div class="mlab">SpaceX Falcon 9 Rideshare</div></div>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-row">
+        <div class="tl-date">HERITAGE</div>
+        <div><h4>Operational constellation in orbit</h4><p>WISeSat picosatellites launched on successive SpaceX Falcon 9 missions, validating post-quantum key exchange and direct-to-satellite IoT connectivity in flight.</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">2026</div>
+        <div><h4>WISeSat 3.0 platform finalization</h4><p>Next-generation satellite design integrating SEALSQ post-quantum semiconductors at the payload core, with expanded throughput for the machine economy.</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">2027–2028</div>
+        <div><h4>Constellation deployment</h4><p>Ten WISeSat 3.0 satellites deployed to low Earth orbit, extending coverage toward continuous, planet-wide post-quantum key delivery.</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">BEYOND</div>
+        <div><h4>The quantum internet, from orbit</h4><p>From post-quantum key delivery to space-based quantum key distribution and entanglement links — extending the quantum internet from LEO to lunar operations and beyond.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKETS ============ -->
+<section id="markets">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Markets</div>
+      <h2>Where orbital trust <b>becomes essential.</b></h2>
+    </div>
+    <div class="markets reveal">
+      <div class="market">
+        <div class="micon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17h18M5 17V9l7-5 7 5v8M9 17v-4h6v4"/></svg></div>
+        <div><h4>Critical Infrastructure &amp; Energy</h4><p>Quantum-safe authentication for grids, pipelines, and utilities — including assets far beyond terrestrial coverage.</p></div>
+      </div>
+      <div class="market">
+        <div class="micon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
+        <div><h4>Defense &amp; Government</h4><p>Sovereign, jurisdiction-neutral key distribution for nations seeking communications resilience without dependence on any single power's networks.</p></div>
+      </div>
+      <div class="market">
+        <div class="micon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="10" rx="1"/><path d="M7 8V6a2 2 0 012-2h6a2 2 0 012 2v2M3 13h18"/></svg></div>
+        <div><h4>Global Logistics &amp; Maritime</h4><p>Authenticated tracking of containers, fleets, and cargo across oceans — tamper-evident custody from origin to destination.</p></div>
+      </div>
+      <div class="market">
+        <div class="micon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+        <div><h4>The Machine Economy</h4><p>Cryptographic identity and tokenized transaction rails for autonomous devices — every machine provable, every transaction lawful by design.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTORS ============ -->
+<section id="investors" class="invest">
+  <div class="wrap">
+    <div class="eyebrow reveal">Investors &amp; Partners</div>
+    <h2 class="reveal">The trust layer of space is <b>being built now.</b></h2>
+    <p class="reveal">SpaceQuantum is part of the WISeKey ecosystem (SIX: WIHN · Nasdaq: WKEY), alongside SEALSQ (Nasdaq: LAES), with a planned Nasdaq listing on its own trajectory. For institutional briefings, partnership inquiries, and the full constellation economics, contact our Geneva headquarters.</p>
+    <div class="hero-actions reveal" style="margin-top:40px">
+      <a class="btn btn-gold" href="mailto:info@wisekey.com">Request Investor Briefing</a>
+      <a class="btn btn-ghost" href="https://www.wisesat.space" target="_blank" rel="noopener">WISeSat.Space →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">SPACE<b>QUANTUM</b><small>by WISeSat · a WISeKey company</small></div>
+      </div>
+      <div class="foot-links">
+        <a href="#highway">Architecture</a>
+        <a href="#constellation">Constellation</a>
+        <a href="#markets">Markets</a>
+        <a href="#investors">Investors</a>
+      </div>
+    </div>
+    <p class="foot-note">© 2026 SpaceQuantum · WISeSat AG, a WISeKey International Holding company. Geneva, Switzerland. Cryptographic Root of Trust operated by the OISTE Foundation. This page may contain forward-looking statements regarding planned satellite deployments and corporate transactions; actual results may differ materially.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- starfield + orbiting constellation ---------- */
+const canvas=document.getElementById('sky');
+const ctx=canvas.getContext('2d');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W,H,stars=[],sats=[];
+
+function resize(){
+  W=canvas.width=canvas.offsetWidth*devicePixelRatio;
+  H=canvas.height=canvas.offsetHeight*devicePixelRatio;
+  stars=Array.from({length:Math.floor(W*H/16000)},()=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.2+.3,
+    tw:Math.random()*Math.PI*2,
+    sp:.4+Math.random()*1.2
+  }));
+  // orbital arcs hugging the earth limb (limb center is below viewport)
+  const cx=W/2, cy=H+W*0.46;
+  sats=[0,1,2,3,4].map(i=>({
+    cx,cy,
+    R:W*0.46+H*0.18+i*(H*0.075),
+    a:Math.random()*Math.PI,
+    v:(0.00018+Math.random()*0.0001)*(devicePixelRatio>1?1:1.4)
+  }));
+}
+window.addEventListener('resize',resize);resize();
+
+function frame(t){
+  ctx.clearRect(0,0,W,H);
+  // stars
+  for(const s of stars){
+    const a=.35+.55*Math.abs(Math.sin(s.tw+t*0.001*s.sp));
+    ctx.globalAlpha=a;
+    ctx.fillStyle='#C9D4F0';
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,7);ctx.fill();
+  }
+  ctx.globalAlpha=1;
+  // orbit arcs + satellites
+  for(const o of sats){
+    ctx.strokeStyle='rgba(159,216,234,.07)';
+    ctx.lineWidth=1;
+    ctx.beginPath();ctx.arc(o.cx,o.cy,o.R,Math.PI*1.15,Math.PI*1.85);ctx.stroke();
+    if(!reduced)o.a+=o.v*16;
+    const ang=Math.PI*1.15+((Math.sin(o.a)+1)/2)*(Math.PI*0.7);
+    const x=o.cx+Math.cos(ang)*o.R, y=o.cy+Math.sin(ang)*o.R;
+    // glow
+    const g=ctx.createRadialGradient(x,y,0,x,y,14*devicePixelRatio);
+    g.addColorStop(0,'rgba(245,201,122,.9)');g.addColorStop(1,'rgba(245,201,122,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,14*devicePixelRatio,0,7);ctx.fill();
+    ctx.fillStyle='#F5C97A';
+    ctx.beginPath();ctx.arc(x,y,2.2*devicePixelRatio,0,7);ctx.fill();
+  }
+  if(!reduced)requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- telemetry counters ---------- */
+const t0=Date.now();
+const metEl=document.getElementById('met');
+const keysEl=document.getElementById('keys');
+let keys=8421337;
+function tick(){
+  const s=Math.floor((Date.now()-t0)/1000);
+  const hh=String(Math.floor(s/3600)).padStart(2,'0');
+  const mm=String(Math.floor(s%3600/60)).padStart(2,'0');
+  const ss=String(s%60).padStart(2,'0');
+  metEl.textContent=`T+ ${hh}:${mm}:${ss}`;
+  keys+=Math.floor(Math.random()*7)+2;
+  keysEl.textContent=keys.toLocaleString('en-US');
+}
+tick();setInterval(tick,1000);
+
+/* ---------- scroll reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

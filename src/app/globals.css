@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* ========== SpaceQuantum Design Tokens ========== */
+@theme inline {
+  /* Colors */
+  --color-sq-void: #060914;
+  --color-sq-midnight: #0B1124;
+  --color-sq-panel: #10172E;
+  --color-sq-line: rgba(140, 160, 210, 0.14);
+  --color-sq-starlight: #E9ECF6;
+  --color-sq-slate: #8B94AB;
+  --color-sq-kapton: #E0A94E;
+  --color-sq-kapton-bright: #F5C97A;
+  --color-sq-ice: #9FD8EA;
+
+  /* Font families */
+  --font-display: var(--font-unbounded), ui-sans-serif, sans-serif;
+  --font-body: var(--font-instrument-sans), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
+/* ========== Base ========== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-sq-void);
+  color: var(--color-sq-starlight);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-sq-kapton);
+  color: var(--color-sq-void);
+}
+
+/* ========== Keyframes ========== */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+@keyframes flow {
+  to { stroke-dashoffset: -140; }
+}
+
+@keyframes satpulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .live-dot { animation: none !important; }
+  .constellation-link { animation: none !important; }
+  .constellation-sat { animation: none !important; }
+}
