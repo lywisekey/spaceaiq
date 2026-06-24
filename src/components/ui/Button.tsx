@@ -9,7 +9,7 @@ export function Button({ variant, href, children, external }: ButtonProps) {
   const base =
     "font-mono text-[.78rem] tracking-[.14em] uppercase px-[30px] py-[15px] rounded-sm inline-block transition-all duration-200";
   const variants = {
-    gold: "bg-sq-kapton text-sq-void border border-sq-kapton hover:bg-sq-kapton-bright hover:border-sq-kapton-bright",
+    gold: "bg-sq-kapton text-sq-starlight border border-sq-kapton hover:bg-sq-kapton-bright hover:border-sq-kapton-bright",
     ghost:
       "border border-sq-line text-sq-starlight hover:border-sq-slate",
   };

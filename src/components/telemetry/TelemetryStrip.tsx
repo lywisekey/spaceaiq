@@ -55,7 +55,7 @@ export function TelemetryStrip() {
           <div className="text-[.62rem] tracking-[.2em] uppercase text-sq-slate mb-[5px]">
             PQC Keys Delivered
           </div>
-          <div className="text-[1.02rem] text-sq-kapton">{keys}</div>
+          <div className="text-[1.02rem] text-sq-kapton-bright">{keys}</div>
         </div>
 
         {/* Root */}

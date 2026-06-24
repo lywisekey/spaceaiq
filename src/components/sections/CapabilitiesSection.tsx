@@ -1,11 +1,13 @@
 import { CAPABILITIES } from "@/lib/constants";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionVideoBg } from "@/components/ui/SectionVideoBg";
 
 export function CapabilitiesSection() {
   return (
-    <section className="py-[120px] relative">
-      <div className="max-w-[1180px] mx-auto px-7">
+    <section className="py-[120px] relative overflow-hidden">
+      <SectionVideoBg src="/space-3.mp4" />
+      <div className="relative z-10 max-w-[1180px] mx-auto px-7">
         <ScrollReveal>
           <SectionHead
             eyebrow="Capabilities"
@@ -27,7 +29,7 @@ export function CapabilitiesSection() {
                 key={cap.number}
                 className="bg-sq-void p-[44px_36px] transition-colors duration-300 hover:bg-sq-panel"
               >
-                <div className="font-mono text-[.7rem] tracking-[.2em] text-sq-kapton mb-[26px]">
+                <div className="font-mono text-[.7rem] tracking-[.2em] text-sq-kapton-bright mb-[26px]">
                   {cap.number}
                 </div>
                 <h3 className="font-display font-medium text-[1.05rem] leading-[1.4] mb-4">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/lib/constants";
 
@@ -22,14 +23,15 @@ export function Navbar() {
     >
       <div className="max-w-[1180px] mx-auto px-7 flex items-center justify-between h-16">
         {/* Logo */}
-        <a
-          href="#top"
-          className="font-display font-medium text-[.95rem] tracking-[.04em]"
-        >
-          SPACE<b className="text-sq-kapton font-bold">QUANTUM</b>
-          <span className="block font-mono font-normal text-[.55rem] tracking-[.28em] text-sq-slate mt-px">
-            by WISeSat &middot; a WISeKey company
-          </span>
+        <a href="#top" className="flex items-center" aria-label="SpaceAIQ home">
+          <Image
+            src="/spacaiq-logo.png"
+            alt="SpaceAIQ"
+            width={1413}
+            height={151}
+            priority
+            className="h-6.5 w-auto"
+          />
         </a>
 
         {/* Desktop links */}
@@ -49,7 +51,7 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <a
             href="#investors"
-            className="hidden sm:inline-block font-mono text-[.72rem] tracking-[.14em] uppercase border border-sq-kapton text-sq-kapton px-[18px] py-[9px] rounded-sm transition-all duration-200 hover:bg-sq-kapton hover:text-sq-void"
+            className="hidden sm:inline-block font-mono text-[.72rem] tracking-[.14em] uppercase border border-sq-kapton-bright text-sq-kapton-bright px-[18px] py-[9px] rounded-sm transition-all duration-200 hover:bg-sq-kapton hover:text-sq-starlight"
           >
             Request Briefing
           </a>
@@ -103,7 +105,7 @@ export function Navbar() {
               <a
                 href="#investors"
                 onClick={() => setMenuOpen(false)}
-                className="sm:hidden font-mono text-[.72rem] tracking-[.14em] uppercase border border-sq-kapton text-sq-kapton px-[18px] py-[9px] rounded-sm w-fit transition-all duration-200 hover:bg-sq-kapton hover:text-sq-void"
+                className="sm:hidden font-mono text-[.72rem] tracking-[.14em] uppercase border border-sq-kapton-bright text-sq-kapton-bright px-[18px] py-[9px] rounded-sm w-fit transition-all duration-200 hover:bg-sq-kapton hover:text-sq-starlight"
               >
                 Request Briefing
               </a>

@@ -1,15 +1,17 @@
 import { MISSION_STATS, TIMELINE_ITEMS } from "@/lib/constants";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionVideoBg } from "@/components/ui/SectionVideoBg";
 import { ConstellationSVG } from "@/components/constellation/ConstellationSVG";
 
 export function ConstellationSection() {
   return (
     <section
       id="constellation"
-      className="py-[120px] relative border-t border-b border-sq-line bg-sq-midnight"
+      className="py-[120px] relative overflow-hidden border-t border-b border-sq-line bg-sq-midnight"
     >
-      <div className="max-w-[1180px] mx-auto px-7">
+      <SectionVideoBg src="/space-3.mp4" />
+      <div className="relative z-10 max-w-[1180px] mx-auto px-7">
         <ScrollReveal>
           <SectionHead
             eyebrow="The Program"
@@ -61,7 +63,7 @@ export function ConstellationSection() {
                 key={item.date}
                 className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-2 sm:gap-8 py-[30px] border-b border-sq-line"
               >
-                <div className="font-mono text-[.8rem] tracking-[.1em] text-sq-kapton">
+                <div className="font-mono text-[.8rem] tracking-[.1em] text-sq-kapton-bright">
                   {item.date}
                 </div>
                 <div>

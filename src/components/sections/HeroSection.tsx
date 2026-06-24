@@ -6,31 +6,29 @@ import { Button } from "@/components/ui/Button";
 export function HeroSection() {
   return (
     <header id="top" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Starfield canvas */}
-      <Starfield />
-
-      {/* Earth limb */}
+      {/* Background video */}
       <div
         aria-hidden="true"
-        className="absolute left-1/2 -translate-x-1/2 -bottom-[72vw] w-[160vw] h-[160vw] min-w-[1400px] min-h-[1400px] rounded-full z-[1]"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 38%, #1A2C5E 0%, #101B3D 18%, #0A1129 38%, #060914 62%)",
-          boxShadow:
-            "0 -2px 80px rgba(120,170,255,.22), inset 0 6px 60px rgba(159,216,234,.10)",
-        }}
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
       >
-        {/* Atmosphere arc */}
-        <div
-          className="absolute inset-[-1px] rounded-full"
-          style={{
-            borderTop: "1px solid rgba(159,216,234,.45)",
-            mask: "linear-gradient(to bottom, #000 0 90px, transparent 140px)",
-            WebkitMask:
-              "linear-gradient(to bottom, #000 0 90px, transparent 140px)",
-          }}
-        />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        >
+          <source src="/space-1.mp4" type="video/mp4" />
+        </video>
+        {/* Readability + brand overlays: darken left (text), fade top/bottom to black */}
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-linear-to-r from-black via-black/55 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black/60" />
       </div>
+
+      {/* Starfield canvas — subtle moving stars + red satellites over the video */}
+      <Starfield />
 
       {/* Hero content */}
       <div className="relative z-[2] w-full max-w-[1180px] mx-auto px-7 pt-[120px] pb-[220px]">

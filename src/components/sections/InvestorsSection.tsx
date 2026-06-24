@@ -8,7 +8,7 @@ export function InvestorsSection() {
       id="investors"
       className="py-[120px] relative border-t border-sq-line text-center"
       style={{
-        background: "linear-gradient(180deg, #0B1124 0%, #060914 100%)",
+        background: "linear-gradient(180deg, #0A0606 0%, #000000 100%)",
       }}
     >
       <div className="max-w-[1180px] mx-auto px-7">
