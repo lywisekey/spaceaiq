@@ -1,16 +1,10 @@
-import { Unbounded, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Saira, IBM_Plex_Mono } from "next/font/google";
 
-export const unbounded = Unbounded({
+// SpaceX-style technical sans (D-DIN substitute). One family for display + body.
+export const saira = Saira({
   subsets: ["latin"],
-  variable: "--font-unbounded",
-  weight: ["300", "500", "700"],
-  display: "swap",
-});
-
-export const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument-sans",
-  weight: ["400", "500", "600"],
+  variable: "--font-saira",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 

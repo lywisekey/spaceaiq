@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const FOOT_LINKS = [
   { label: "Architecture", href: "#highway" },
   { label: "Constellation", href: "#constellation" },
@@ -11,11 +13,14 @@ export function Footer() {
       <div className="max-w-[1180px] mx-auto px-7">
         <div className="flex justify-between gap-8 flex-wrap items-start">
           <div>
-            <a href="#top" className="text-sq-starlight font-display font-medium text-[.95rem] tracking-[.04em]">
-              SPACE<b className="text-sq-kapton font-bold">QUANTUM</b>
-              <span className="block font-mono font-normal text-[.55rem] tracking-[.28em] text-sq-slate mt-px">
-                by WISeSat &middot; a WISeKey company
-              </span>
+            <a href="#top" className="flex items-center" aria-label="SpaceAIQ home">
+              <Image
+                src="/spacaiq-logo.png"
+                alt="SpaceAIQ"
+                width={1413}
+                height={151}
+                className="h-6.5 w-auto"
+              />
             </a>
           </div>
           <div className="flex gap-7 font-mono text-[.72rem] tracking-[.12em] uppercase">

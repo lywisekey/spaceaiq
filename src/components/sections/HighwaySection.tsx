@@ -38,11 +38,11 @@ export function HighwaySection() {
                   <span
                     className={`absolute left-[-4px] top-1/2 -translate-y-1/2 w-[7px] h-[7px] rounded-full ${
                       layer.active
-                        ? "bg-sq-kapton shadow-[0_0_12px_rgba(224,169,78,.8)]"
+                        ? "bg-sq-kapton shadow-[0_0_12px_rgba(255,59,59,.8)]"
                         : "bg-sq-line"
                     }`}
                   />
-                  <span className="text-sq-kapton mr-[14px]">
+                  <span className="text-sq-kapton-bright mr-[14px]">
                     {layer.id}
                   </span>
                   {layer.label}

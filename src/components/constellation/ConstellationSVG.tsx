@@ -12,28 +12,28 @@ export function ConstellationSVG() {
       >
         <defs>
           <radialGradient id="earthGrad" cx="42%" cy="38%" r="70%">
-            <stop offset="0%" stopColor="#2A4B8C" />
-            <stop offset="42%" stopColor="#16306A" />
-            <stop offset="78%" stopColor="#0C1B40" />
-            <stop offset="100%" stopColor="#070F26" />
+            <stop offset="0%" stopColor="#2A2326" />
+            <stop offset="42%" stopColor="#191315" />
+            <stop offset="78%" stopColor="#0C0809" />
+            <stop offset="100%" stopColor="#040303" />
           </radialGradient>
           <radialGradient id="atmo" cx="50%" cy="50%" r="50%">
-            <stop offset="74%" stopColor="rgba(159,216,234,0)" />
-            <stop offset="92%" stopColor="rgba(159,216,234,.35)" />
-            <stop offset="100%" stopColor="rgba(159,216,234,0)" />
+            <stop offset="74%" stopColor="rgba(255,59,59,0)" />
+            <stop offset="92%" stopColor="rgba(255,59,59,.32)" />
+            <stop offset="100%" stopColor="rgba(255,59,59,0)" />
           </radialGradient>
           <radialGradient id="satGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(245,201,122,.9)" />
-            <stop offset="100%" stopColor="rgba(245,201,122,0)" />
+            <stop offset="0%" stopColor="rgba(255,59,59,.9)" />
+            <stop offset="100%" stopColor="rgba(255,59,59,0)" />
           </radialGradient>
           <linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="rgba(245,201,122,.7)" />
-            <stop offset="100%" stopColor="rgba(159,216,234,.5)" />
+            <stop offset="0%" stopColor="rgba(255,59,59,.85)" />
+            <stop offset="100%" stopColor="rgba(225,20,20,.45)" />
           </linearGradient>
         </defs>
 
         {/* starfield */}
-        <g fill="#C9D4F0">
+        <g fill="#FFFFFF">
           <circle cx="70" cy="60" r="1.1" opacity=".7" />
           <circle cx="180" cy="110" r=".8" opacity=".5" />
           <circle cx="820" cy="80" r="1.2" opacity=".8" />
@@ -49,7 +49,7 @@ export function ConstellationSVG() {
         </g>
 
         {/* orbital rings */}
-        <g fill="none" stroke="rgba(159,216,234,.16)" strokeWidth="1">
+        <g fill="none" stroke="rgba(255,255,255,.12)" strokeWidth="1">
           <ellipse cx="450" cy="320" rx="330" ry="118" />
           <ellipse
             cx="450"
@@ -74,7 +74,7 @@ export function ConstellationSVG() {
         {/* graticule */}
         <g
           fill="none"
-          stroke="rgba(159,216,234,.22)"
+          stroke="rgba(255,255,255,.18)"
           strokeWidth="1"
           clipPath="circle(132px at 450px 320px)"
         >
@@ -88,7 +88,7 @@ export function ConstellationSVG() {
 
         {/* soft continents */}
         <g
-          fill="rgba(95,150,210,.30)"
+          fill="rgba(150,144,148,.22)"
           clipPath="circle(132px at 450px 320px)"
         >
           <path d="M392 250 q34 -16 60 4 q24 18 8 42 q-20 26 -52 18 q-30 -10 -30 -34 q0 -22 14 -30 Z" />
@@ -101,7 +101,7 @@ export function ConstellationSVG() {
           cx="450"
           cy="320"
           r="132"
-          fill="rgba(7,15,38,.45)"
+          fill="rgba(0,0,0,.55)"
           clipPath="circle(132px at 450px 320px)"
           transform="translate(48 0)"
         />
@@ -174,14 +174,14 @@ export function ConstellationSVG() {
               }}
             >
               <circle r="16" fill="url(#satGlow)" />
-              <circle r="3.4" fill="#F5C97A" />
+              <circle r="3.4" fill="#FF3B3B" />
               <rect
                 x="-13"
                 y="-2.2"
                 width="9"
                 height="4.4"
                 rx="1"
-                fill="#9FD8EA"
+                fill="#D8DCE6"
               />
               <rect
                 x="4"
@@ -189,7 +189,7 @@ export function ConstellationSVG() {
                 width="9"
                 height="4.4"
                 rx="1"
-                fill="#9FD8EA"
+                fill="#D8DCE6"
               />
             </g>
           ))}
@@ -201,7 +201,7 @@ export function ConstellationSVG() {
           y1="452"
           x2="430"
           y2="392"
-          stroke="rgba(245,201,122,.5)"
+          stroke="rgba(255,59,59,.5)"
           strokeWidth="1.2"
           strokeDasharray="3 5"
         />

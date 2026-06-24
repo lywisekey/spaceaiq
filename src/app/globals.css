@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
-/* ========== SpaceQuantum Design Tokens ========== */
+/* ========== SPACEAIQ Design Tokens ========== */
+/* Color architecture: Black 70% / White 20% / Red 10%.
+   The logo is the strongest red object on every screen. */
 @theme inline {
   /* Colors */
-  --color-sq-void: #060914;
-  --color-sq-midnight: #0B1124;
-  --color-sq-panel: #10172E;
-  --color-sq-line: rgba(140, 160, 210, 0.14);
-  --color-sq-starlight: #E9ECF6;
-  --color-sq-slate: #8B94AB;
-  --color-sq-kapton: #E0A94E;
-  --color-sq-kapton-bright: #F5C97A;
-  --color-sq-ice: #9FD8EA;
+  --color-sq-void: #000000;
+  --color-sq-midnight: #060607;
+  --color-sq-panel: #0C0C0E;
+  --color-sq-line: rgba(255, 255, 255, 0.10);
+  --color-sq-starlight: #FFFFFF;
+  --color-sq-slate: #8C8C95;
+  --color-sq-kapton: #E11414;
+  --color-sq-kapton-bright: #FF3B3B;
+  --color-sq-ice: #FF5A5A;
 
-  /* Font families */
-  --font-display: var(--font-unbounded), ui-sans-serif, sans-serif;
-  --font-body: var(--font-instrument-sans), ui-sans-serif, sans-serif;
+  /* Font families — SpaceX-style technical sans (Saira, a D-DIN substitute) */
+  --font-display: var(--font-saira), ui-sans-serif, sans-serif;
+  --font-body: var(--font-saira), ui-sans-serif, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 }
 

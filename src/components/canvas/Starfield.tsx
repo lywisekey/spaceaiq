@@ -78,7 +78,7 @@ export function Starfield() {
         const a =
           0.35 + 0.55 * Math.abs(Math.sin(s.tw + t * 0.001 * s.sp));
         ctx.globalAlpha = a;
-        ctx.fillStyle = "#C9D4F0";
+        ctx.fillStyle = "#FFFFFF";
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, 7);
         ctx.fill();
@@ -87,7 +87,7 @@ export function Starfield() {
 
       // Orbits + satellites
       for (const o of satsRef.current) {
-        ctx.strokeStyle = "rgba(159,216,234,.07)";
+        ctx.strokeStyle = "rgba(255,255,255,.06)";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(o.cx, o.cy, o.R, Math.PI * 1.15, Math.PI * 1.85);
@@ -102,14 +102,14 @@ export function Starfield() {
 
         // Glow
         const g = ctx.createRadialGradient(x, y, 0, x, y, 14 * dpr);
-        g.addColorStop(0, "rgba(245,201,122,.9)");
-        g.addColorStop(1, "rgba(245,201,122,0)");
+        g.addColorStop(0, "rgba(255,59,59,.9)");
+        g.addColorStop(1, "rgba(255,59,59,0)");
         ctx.fillStyle = g;
         ctx.beginPath();
         ctx.arc(x, y, 14 * dpr, 0, 7);
         ctx.fill();
 
-        ctx.fillStyle = "#F5C97A";
+        ctx.fillStyle = "#FF3B3B";
         ctx.beginPath();
         ctx.arc(x, y, 2.2 * dpr, 0, 7);
         ctx.fill();

@@ -1,6 +1,7 @@
 import { MARKET_SEGMENTS } from "@/lib/constants";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionVideoBg } from "@/components/ui/SectionVideoBg";
 
 function MarketIcon({ type }: { type: string }) {
   if (type === "LOGISTICS") {
@@ -49,8 +50,9 @@ function MarketIcon({ type }: { type: string }) {
 
 export function MarketsSection() {
   return (
-    <section id="markets" className="py-[120px] relative">
-      <div className="max-w-[1180px] mx-auto px-7">
+    <section id="markets" className="py-[120px] relative overflow-hidden">
+      <SectionVideoBg src="/space-2.mp4" />
+      <div className="relative z-10 max-w-[1180px] mx-auto px-7">
         <ScrollReveal>
           <SectionHead
             eyebrow="Markets"
@@ -72,7 +74,7 @@ export function MarketsSection() {
                 key={seg.title}
                 className="grid grid-cols-[54px_1fr] gap-[22px]"
               >
-                <div className="w-[54px] h-[54px] border border-sq-line rounded-sm flex items-center justify-center text-sq-kapton">
+                <div className="w-[54px] h-[54px] border border-sq-line rounded-sm flex items-center justify-center text-sq-kapton-bright">
                   <MarketIcon type={seg.iconPath} />
                 </div>
                 <div>
